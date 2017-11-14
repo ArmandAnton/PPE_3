@@ -22,10 +22,10 @@ class Adherent {
 		$this->setAdresseMail($adresseMail);
 		$this->setCp($cp);
 		$this->setDateNaissance($dateNaissance);
-    $this->setNom($nom);
-    $this->setPrenom($prenom);
-    $this->setRue($rue);
-    $this->setVille($ville);
+        $this->setNom($nom);
+        $this->setPrenom($prenom);
+        $this->setRue($rue);
+        $this->setVille($ville);
 
 	}
 
