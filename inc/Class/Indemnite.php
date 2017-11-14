@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('inc/init.php');
 
 Class Indemnite {
 
@@ -9,8 +9,8 @@ Class Indemnite {
 	private $tarifkilometrique_indemnite
 
 	function __construct($annee_indemnite, $tarifkilometrique_indemnite) {
-        $this->set_annee_indemnite($annee_indemnite) = $annee_indemnite;
-        $this->set_tarifkilometrique_indemnite($tarifkilometrique_indemnite) = $tarifkilometrique_indemnite;
+        $this->setAnnee_indemnite($annee_indemnite) = $annee_indemnite;
+        $this->setTarifkilometrique_indemnite($tarifkilometrique_indemnite) = $tarifkilometrique_indemnite;
 	}
 
 

@@ -1,5 +1,6 @@
 <?php
 
+include_once('inc/init.php');
 
 class LigneFrais {
 
@@ -14,12 +15,12 @@ class LigneFrais {
 
     /* Fonction constructeur */ 
 	function __construct($id_lf, $couthebergement_lf, $coutpeage_lf, $coutrepas_lf, $datetrajet_lf, $km_lf) {
-        $this->set_id_lf($id_lf) = $id_lf;
-        $this->set_couthebergement_lf($couthebergement_lf) = $couthebergement_lf;
-        $this->set_coutpeage_lf($coutpeage_lf) = $coutpeage_lf;
-        $this->set_coutrepas_lf($coutrepas_lf) = $coutrepas_lf;
-        $this->set_datetrajet_lf($datetrajet_lf) = $datetrajet_lf;
-        $this->set_km_lf($km_lf) = $km_lf;
+        $this->setId_lf($id_lf) = $id_lf;
+        $this->setCouthebergement_lf($couthebergement_lf) = $couthebergement_lf;
+        $this->setCoutpeage_lf($coutpeage_lf) = $coutpeage_lf;
+        $this->setCoutrepas_lf($coutrepas_lf) = $coutrepas_lf;
+        $this->setDatetrajet_lf($datetrajet_lf) = $datetrajet_lf;
+        $this->setKm_lf($km_lf) = $km_lf;
         
     }
 

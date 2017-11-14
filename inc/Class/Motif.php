@@ -1,5 +1,7 @@
 <?php
 
+include_once('inc/init.php');
+
 class Motif {
 
 	private $id_motif;
@@ -8,8 +10,8 @@ class Motif {
 
 	/* Fonction constructeur */
     function __construct($id_motif, $libelle_motif) {
-        $this->set_id_motif($id_motif) = $id_motif;
-        $this->set_libelle_motif($libelle_motif) = $libelle_motif;
+        $this->setId_motif($id_motif) = $id_motif;
+        $this->setLibelle_motif($libelle_motif) = $libelle_motif;
     }
 
 

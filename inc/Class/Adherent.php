@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('inc/init.php');
 
 class Adherent {
 
@@ -18,14 +18,14 @@ class Adherent {
 	function __construct($numlicense_adherent, $adresseMail, $cp, $dateNaissance, $nom, $prenom, $rue, $ville)
 
 	{
-		$this->set_numlicense_adherent($numlicense_adherent);
-		$this->set_adresseMail($adresseMail);
-		$this->set_cp($cp);
-		$this->set_dateNaissance($dateNaissance);
-        $this->set_nom($nom);
-        $this->set_prenom($prenom);
-        $this->set_rue($rue);
-        $this->set_ville($ville);
+		$this->setNumlicense_adherent($numlicense_adherent);
+		$this->setAdresseMail($adresseMail);
+		$this->setCp($cp);
+		$this->setDateNaissance($dateNaissance);
+    $this->setNom($nom);
+    $this->setPrenom($prenom);
+    $this->setRue($rue);
+    $this->setVille($ville);
 
 	}
 
