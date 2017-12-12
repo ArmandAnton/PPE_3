@@ -1,11 +1,10 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
 
-class DAO_Bordereau
+class DAO_Bordereau extends DAO
 {
     
 /* id_ndf = id */ 
@@ -16,11 +15,11 @@ class DAO_Bordereau
 
 */
     public function find_bordereau($id_ndf) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM bordereau WHERE id_ndf =:id_ndf";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":id_ndf" => $id_ndf));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -40,11 +39,11 @@ class DAO_Bordereau
 
 */
     public function findall_bordereau() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM bordereau";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,10 +65,10 @@ class DAO_Bordereau
 
 */
     function update_bordereau(Bordereau $bordereau_object) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE bordereau SET id_ndf =:id_ndf ,annee_indemnite =:annee_indemnite";
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -90,9 +89,10 @@ class DAO_Bordereau
 
 */
 function delete_bordereau($id_ndf) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM bordereau WHERE id_ndf =:id_ndf";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":id_ndf" => $id_ndf));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -107,10 +107,10 @@ function delete_bordereau($id_ndf) {
 
 */
 function insert_bordereau(Bordereau $bordereau_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO bordereau(id_ndf, ) VALUES (:id_ndf, :annee_indemnite)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                 ":id_ndf" => $bordereau_object->get_id_ndf(),

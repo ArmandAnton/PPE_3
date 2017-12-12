@@ -19,13 +19,13 @@ class Club {
  	/* Fonction contructeur */ 
 
       function __construct($id_club, $adresse_club, $cp_club, $nompresident_club, $nom_club, $sigle_club, $ville_club) {
-        $this->setId_club($id_club) = $id_club;
-        $this->setAdresse_club($adresse_club) = $adresse_club;
-        $this->setCp_club($cp_club) = $cp_club;
-        $this->setNompresident_club($nompresident_club) = $nompresident_club;
-        $this->setNom_club($nom_club) = $nom_club;
-        $this->setSigle_club($sigle_club) = $sigle_club;
-        $this->setVille_club($ville_club) = $ville_club;
+        $this->setId_club($id_club);
+        $this->setAdresse_club($adresse_club);
+        $this->setCp_club($cp_club);
+        $this->setNompresident_club($nompresident_club);
+        $this->setNom_club($nom_club);
+        $this->setSigle_club($sigle_club);
+        $this->setVille_club($ville_club);
     }
 
 

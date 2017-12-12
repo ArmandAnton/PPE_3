@@ -16,8 +16,8 @@ class LigueAffiliation {
   	/* Fonction contructeur */
 
     function __construct($id_ligue, $id_recu) {
-        $this->setId_ligue($id_ligue) = $id_ligue;
-        $this->setId_recu($id_recu) = $id_recu;
+        $this->setId_ligue($id_ligue);
+        $this->setId_recu($id_recu);
     }
 
 
@@ -40,5 +40,5 @@ class LigueAffiliation {
     function getId_recu() {
         return $this->id_recu;
     }
-
+}
 ?>

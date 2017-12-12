@@ -10,8 +10,8 @@ class Motif {
 
 	/* Fonction constructeur */
     function __construct($id_motif, $libelle_motif) {
-        $this->setId_motif($id_motif) = $id_motif;
-        $this->setLibelle_motif($libelle_motif) = $libelle_motif;
+        $this->setId_motif($id_motif);
+        $this->setLibelle_motif($libelle_motif);
     }
 
 
@@ -36,3 +36,4 @@ class Motif {
 
 
 }
+?>

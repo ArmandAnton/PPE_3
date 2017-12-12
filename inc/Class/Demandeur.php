@@ -5,11 +5,6 @@ include_once('inc/init.php');
 
 class Demandeur {
 
-
-
-// A MODIF
-
-
     private $numlicense_adherent;
     private $adresseMail;
     private $cp;
@@ -22,9 +17,9 @@ class Demandeur {
   	/* Fonction contructeur */
 
     function __construct($id_demandeur, $mail_demandeur, $motdepasse_demandeur) {
-        $this->setId_demandeur($id_demandeur) = $id_demandeur;
-        $this->setMail_demandeur($mail_demandeur) = $mail_demandeur;
-        $this->setMotdepasse_demandeur($motdepasse_demandeur) = $motdepasse_demandeur;
+        $this->setId_demandeur($id_demandeur);
+        $this->setMail_demandeur($mail_demandeur);
+        $this->setMotdepasse_demandeur($motdepasse_demandeur);
     }
 
 
@@ -58,5 +53,5 @@ class Demandeur {
 
 
 
-
+}
 ?>

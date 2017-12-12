@@ -1,11 +1,10 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
 
-class DAO_LigueAffiliation
+class DAO_LigueAffiliation extends DAO
 {
 
 /* 
@@ -14,11 +13,11 @@ class DAO_LigueAffiliation
 
 */
     public function find_ligueAffiliation($id_ligue) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM ligueAffiliation WHERE id_ligue =:id_ligue";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":id_ligue" => $id_ligue));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -38,11 +37,11 @@ class DAO_LigueAffiliation
 
 */
     public function findall_ligueAffiliation() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM ligueAffiliation";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,11 +63,11 @@ class DAO_LigueAffiliation
 
 */
     function update_ligueAffiliation(LigueAffiliation $ligueAffiliation_object) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE ligueAffiliation SET id_ligue=:id_ligue, libelle_ligue=:libelle_ligue";
 
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -89,9 +88,10 @@ class DAO_LigueAffiliation
 
 */
 function delete_ligueAffiliation($id_ligue) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM ligueAffiliation WHERE id_ligue =:id_ligue";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":id_ligue" => $id_ligue));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -107,10 +107,10 @@ function delete_ligueAffiliation($id_ligue) {
 */
 
 function insert_ligueAffiliation(LigueAffiliation $ligueAffiliation_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO ligueAffiliation (id_ligue, libelle_ligue) VALUES (:id_ligue, :libelle_ligue)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                     ":id_ligue" => $ligueAffiliation_object->get_id_ligue(),

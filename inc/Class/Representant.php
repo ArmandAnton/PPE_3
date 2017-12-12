@@ -14,12 +14,12 @@ class Representant {
 
     /* Fonction constructeur */     
     function __construct($id_representant, $cp_representant, $nom_representant, $prenom_representant, $rue_representant, $ville_representant) {
-        $this->setId_representant($id_representant) = $id_representant;
-        $this->setCp_representant($cp_representant) = $cp_representant;
-        $this->setNom_representant($nom_representant) = $nom_representant;
-        $this->setPrenom_representant($prenom_representant) = $prenom_representant;
-        $this->setRue_representant($rue_representant) = $rue_representant;
-        $this->setVille_representant($ville_representant) = $ville_representant;
+        $this->setId_representant($id_representant);
+        $this->setCp_representant($cp_representant);
+        $this->setNom_representant($nom_representant);
+        $this->setPrenom_representant($prenom_representant);
+        $this->setRue_representant($rue_representant);
+        $this->setVille_representant($ville_representant);
     }
 
     /* Fonctions setter */
@@ -75,3 +75,4 @@ class Representant {
     }
 
 }
+?>

@@ -1,11 +1,10 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
 
-class DAO_Indemnite
+class DAO_Indemnite extends DAO
 {
 
 /* 
@@ -14,11 +13,11 @@ class DAO_Indemnite
 
 */
     public function find_indemnite($annee_indemnite) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM indemnite WHERE annee_indemnite =:annee_indemnite";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":annee_indemnite" => $annee_indemnite));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -38,11 +37,11 @@ class DAO_Indemnite
 
 */
     public function findall_indemnite() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM indemnite";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,11 +63,11 @@ class DAO_Indemnite
 
 */
     function update_indemnite(Indemnite $annee_indemnite) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE indemnite SET annee_indemnite=:annee_indemnite, tarifkilometrique_indemnite=:tarifkilometrique_indemnite";
 
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -90,9 +89,10 @@ class DAO_Indemnite
 */
 /*
 function delete_indemnite($annee_indemnite) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM indemnite WHERE annee_indemnite =:annee_indemnite";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":annee_indemnite" => $annee_indemnite));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -109,10 +109,10 @@ function delete_indemnite($annee_indemnite) {
 */
 
 function insert_indemnite(Indemnite $indemnite_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO indemnite (annee_indemnite, tarifkilometrique_indemnite) VALUES (:annee_indemnite, :tarifkilometrique_indemnite)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                 ":annee_indemnite" => $indemnite_object->getAnnee_indemnite(),

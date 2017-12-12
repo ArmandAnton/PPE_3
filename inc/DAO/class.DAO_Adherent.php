@@ -1,11 +1,9 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
-
-class DAO_Adherent
+class DAO_Adherent extends DAO
 {
 	
 /* numlicense_adherent = id */ 
@@ -16,11 +14,11 @@ class DAO_Adherent
 
 */
     public function find_adherent($numlicense_adherent) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM adherent WHERE numlicense_adherent =:numlicense_adherent";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":numlicense_adherent" => $numlicense_adherent));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -40,11 +38,11 @@ class DAO_Adherent
 
 */
     public function findall_adherent() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM adherent";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,10 +64,10 @@ class DAO_Adherent
 
 */
     function update_adherent(Adherent $adherent_object) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE adherent SET numlicense_adherent =:numlicense_adherent ,Nom =:Nom ,Prenom =:Prenom ,dateNaissance =:dateNaissance ,Rue =:Rue ,Cp =:Cp ,Ville =:Vile ,adresseMail =:adresseMail ,id_demandeur =:id_demandeur ,id_club =:id_club ,id_representant =:id_representant ";
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -99,9 +97,10 @@ class DAO_Adherent
 
 */
 function delete_adherent($numlicense_adherent) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM adherent WHERE numlicense_adherent =:numlicense_adherent";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":numlicense_adherent" => $numlicense_adherent));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -115,10 +114,10 @@ function delete_adherent($numlicense_adherent) {
 * Fonction insert de adherent
 
 */function insert_adherent(Adherent $adherent_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO adherent(numlicense_adherent, Nom, Prenom, dateNaissance, Rue, Cp, Ville, adresseMail, id_demandeur, id_club, id_representant) VALUES (:numlicense_adherent, :Nom, :Prenom, :dateNaissance, :Rue, :Cp, :Ville, :adresseMail, :id_demandeur, :id_club, :id_representant)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                 ":numlicense_adherent" => $adherent_object->get_numlicense_adherent(),

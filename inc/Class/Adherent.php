@@ -1,6 +1,7 @@
 <?php
 
-include_once('inc/init.php');
+define('ROOT', dirname(dirname(dirname(__FILE__))));
+
 
 class Adherent {
 

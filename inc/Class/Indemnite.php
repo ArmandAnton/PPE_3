@@ -6,11 +6,11 @@ Class Indemnite {
 
 
 	private $annee_indemnite;
-	private $tarifkilometrique_indemnite
+	private $tarifkilometrique_indemnite;
 
 	function __construct($annee_indemnite, $tarifkilometrique_indemnite) {
-        $this->setAnnee_indemnite($annee_indemnite) = $annee_indemnite;
-        $this->setTarifkilometrique_indemnite($tarifkilometrique_indemnite) = $tarifkilometrique_indemnite;
+        $this->setAnnee_indemnite($annee_indemnite);
+        $this->setTarifkilometrique_indemnite($tarifkilometrique_indemnite);
 	}
 
 

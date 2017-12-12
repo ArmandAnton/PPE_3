@@ -1,7 +1,9 @@
 <?php
-
+include_once('inc/init.php');
 error_reporting(E_ALL);
 
+
+$DAO_Adherent = new DAO_Adherent;
 
 $email_log=isset($_POST['email_log']) ? $_POST['email_log'] : '';
 $email_reg=isset($_POST['email_reg']) ? $_POST['email_reg'] : '';
@@ -12,20 +14,24 @@ $submit_log = isset($_POST['submit_log']);
 $submit_reg = isset($_POST['submit_reg']);
 
 
-if($submit_log == 1 || $submit_reg == 1)
-	{
+/* Connexion */
+if($submit_log) {
+
+	$DAO_Adherent = new DAO_Demandeur;
+	$DAO_Adherent->find($email_log,$password_log);
 
 
-		// Verif confirm password
-		// verif insert bdd 
-		echo $email_log;
-		echo $email_reg;
-		echo $password_log;
-		echo $password_reg;
-		echo $conf_password_reg;
-		echo $submit_reg;
-		echo $submit_log;
+
+}
+/* Inscription */
+if($submit_reg) {
+	
+	if($password_log == $password_reg) {
+
 	}
+
+}
+
 
 
 ?>
@@ -33,7 +39,7 @@ if($submit_log == 1 || $submit_reg == 1)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inscription -- Connexion</title>
+	<title>Inscription - Connexion</title>
 </head>
 <body>
 	<form action="<?php ($_SERVER['PHP_SELF']);?>" name="Form1" method="POST">

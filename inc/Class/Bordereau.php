@@ -5,11 +5,6 @@ include_once('inc/init.php');
 
 class Bordereau {
 
-
-
-// A MODIF
-
-
     private $annee_indemnite;
     private $id_ndf;
     
@@ -17,8 +12,8 @@ class Bordereau {
   	/* Fonction contructeur */
 
     function __construct($annee_indemnite, $id_ndf) {
-        $this->setAnnee_indemnite($annee_indemnite) = $annee_indemnite;
-        $this->setId_ndf($id_ndf) = $id_ndf;
+        $this->setAnnee_indemnite($annee_indemnite);
+        $this->setId_ndf($id_ndf);
     }
 
 
@@ -41,5 +36,6 @@ class Bordereau {
     function getId_ndf() {
         return $this->id_ndf;
     }
+}
 
 ?>

@@ -1,11 +1,10 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
 
-class DAO_Avancer
+class DAO_Avancer extends DAO
 {
     
 /* 
@@ -14,11 +13,11 @@ class DAO_Avancer
 
 */
     public function find_avancer($id_recu) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM avancer WHERE id_recu =:id_recu";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":id_recu" => $id_recu));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -38,11 +37,11 @@ class DAO_Avancer
 
 */
     public function findall_avancer() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM avancer";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,10 +63,10 @@ class DAO_Avancer
 
 */
     function update_avancer(Avancer $id_recu) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE avancer SET annee_indemnite=:annee_indemnite, tarifkilometrique_indemnite=:tarifkilometrique_indemnite";
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -91,9 +90,10 @@ class DAO_Avancer
 */
 
 function insert_avancer(Avancer $avancer_object) {
+  $connexion = get_connexion();
   $sql = "INSERT INTO avancer(id_recu, id_ndf, id_demandeur) VALUES (:id_recu, :id_ndf, :id_demandeur)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                 ":id_recu" => $avancer_object->get_id_recu(),

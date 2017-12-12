@@ -1,11 +1,9 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
-
-class DAO_Club
+class DAO_Club extends DAO
 {
 
 /* 
@@ -14,11 +12,11 @@ class DAO_Club
 
 */
     public function find_club($id_club) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM club WHERE id_club =:id_club";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":id_club" => $id_club));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -38,11 +36,11 @@ class DAO_Club
 
 */
     public function findall_club() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM club";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,11 +62,11 @@ class DAO_Club
 
 */
     function update_club(Club $id_club) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE club SET id_club =:id_club, nom_club =:nom_club, adresse_club =:adresse_club, cp_club =:cp_club, ville_club =:ville_club, sigle_club =:sigle_club, nompresident_club =:nompresident_club, id_ligue =:id_ligue";
 
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
@@ -95,9 +93,10 @@ class DAO_Club
 
 */
 function delete_club($id_club) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM club WHERE id_club =:id_club";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":id_club" => $id_club));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -111,10 +110,10 @@ function delete_club($id_club) {
 * Fonction insert de club
 
 */function insert_club(Club $club_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO club(id_club, nom_club, adresse_club, cp_club, ville_club, sigle_club, nompresident_club, id_ligue) VALUES (:id_club, :nom_club, :adresse_club, :cp_club, :ville_club, :sigle_club, :nompresident_club, :id_ligue )";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                 ":id_club" => $club_object->get_id_club(),

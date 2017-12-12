@@ -12,9 +12,9 @@ class Avancer {
 
 	/* Fonction constructeur */
     function __construct($id_demandeur, $id_ndf, $id_recu) {
-        $this->setId_demandeur($id_demandeur) = $id_demandeur;
-        $this->setId_ndf($id_ndf) = $id_ndf;
-        $this->setId_recu($id_recu) = $id_recu;
+        $this->setId_demandeur($id_demandeur);
+        $this->setId_ndf($id_ndf);
+        $this->setId_recu($id_recu);
     }
 
 

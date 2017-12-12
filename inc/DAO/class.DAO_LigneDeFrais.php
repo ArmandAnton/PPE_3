@@ -1,11 +1,9 @@
 <?php
 error_reporting(E_ALL);
 
-include_once '../connect.php';
+include_once('dao.php');
 
-$pdo = pdo();
-
-class DAO_LigneDeFrais
+class DAO_LigneDeFrais extends DAO
 {
     
 /* id_lf = id */ 
@@ -16,11 +14,11 @@ class DAO_LigneDeFrais
 
 */
     public function find_lf($id_lf) {
-
+      $connexion = get_connexion();
       $sql = "SELECT * FROM lignefrais WHERE id_lf =:id_lf";
 
         try {
-            $sth = $con->prepare($sql);
+            $sth = $connexion->prepare($sql);
             $sth->execute(array(":id_lf" => $id_lf));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } 
@@ -40,11 +38,11 @@ class DAO_LigneDeFrais
 
 */
     public function findall_lf() {
-
+          $connexion = get_connexion();
           $sql = "SELECT * FROM lignefrais";
 
             try {
-              $sth = $con->prepare($sql);
+              $sth = $connexion->prepare($sql);
               $sth->execute();
               $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,20 +64,20 @@ class DAO_LigneDeFrais
 
 */
     function update_lf(LigneFrais $lf_object) {
-
+      $connexion = get_connexion();
       $sql = "UPDATE lignefrais SET id_lf =:id_lf ,couthebergement_lf =:couthebergement_lf, coutpeage_lf =:coutpeage_lf, coutrepas_lf=:coutrepas_lf, datetrajet =:datetrajet";
       try {
-        $sth = $con->prepare($sql);
+        $sth = $connexion->prepare($sql);
         $sth->execute(
                 array(
 
                     ":id_lf" => $lf_object->getId_lf(),
-                    ":couthebergement_lf" => $lf_object->getCouthebergement_lf()
-                    ":coutpeage_lf" => $lf_object->getCoutpeage_lf()
-                    ":coutrepas_lf" => $lf_object->getCoutrepas_lf()
-                    ":datetrajet" => $lf_object->getDatetrajet_lf()
-                    ":id_lf" => $lf_object->getId_lf()
-                    ":id_motif" => $lf_object->getId_motif()
+                    ":couthebergement_lf" => $lf_object->getCouthebergement_lf(),
+                    ":coutpeage_lf" => $lf_object->getCoutpeage_lf(),
+                    ":coutrepas_lf" => $lf_object->getCoutrepas_lf(),
+                    ":datetrajet" => $lf_object->getDatetrajet_lf(),
+                    ":id_lf" => $lf_object->getId_lf(),
+                    ":id_motif" => $lf_object->getId_motif(),
                     ":km_lf" => $lf_object->getKm_lf()
 
 
@@ -97,9 +95,10 @@ class DAO_LigneDeFrais
 
 */
 function delete_lf($id_lf) {
+  $connexion = get_connexion();
   $sql = "DELETE FROM lignefrais WHERE id_lf =:id_lf";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(array(":id_lf" => $id_lf));
   } catch (PDOException $e) {
     throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -113,20 +112,20 @@ function delete_lf($id_lf) {
 * Fonction insert de lf
 
 */function insert_lf(LigneFrais $lf_object) {
-
+  $connexion = get_connexion();
   $sql = "INSERT INTO lignefrais(id_lf,couthebergement_lf,coutpeage_lf,coutrepas_lf,datetrajet,id_lf,id_motif,km_lf ) VALUES (:id_lf, :couthebergement_lf, :coutpeage_lf, :coutrepas_lf, :datetrajet, :id_lf, :id_motif, :km_lf)";
   try {
-    $sth = $con->prepare($sql);
+    $sth = $connexion->prepare($sql);
     $sth->execute(
             array(
                  ":id_lf" => $lf_object->getId_lf(),
-                 ":couthebergement_lf" => $lf_object->getCouthebergement_lf()
-                 ":coutpeage_lf" => $lf_object->getCoutpeage_lf()
-                 ":coutrepas_lf" => $lf_object->getCoutrepas_lf()
-                 ":datetrajet" => $lf_object->getDatetrajet_lf()
-                 ":id_lf" => $lf_object->getId_lf()
-                 ":id_motif" => $lf_object->getId_motif()
-                 ":km_lf" => $lf_object->getKm_lf()(
+                 ":couthebergement_lf" => $lf_object->getCouthebergement_lf(),
+                 ":coutpeage_lf" => $lf_object->getCoutpeage_lf(),
+                 ":coutrepas_lf" => $lf_object->getCoutrepas_lf(),
+                 ":datetrajet" => $lf_object->getDatetrajet_lf(),
+                 ":id_lf" => $lf_object->getId_lf(),
+                 ":id_motif" => $lf_object->getId_motif(),
+                 ":km_lf" => $lf_object->getKm_lf()
                 
     ));
   } catch (PDOException $e) {
